@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vasilii Nikonov - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #121826;
+      color: #E0E6F0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: #1C2333;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #F5F7FA;
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #A0AEC0;
+      margin-top: 5px;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      border-bottom: 2px solid #3D4A61;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+
+    .projects {
+      list-style: none;
+    }
+
+    .projects li {
+      background: #222B3C;
+      padding: 16px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .projects li:hover {
+      background: #2C3B52;
+    }
+
+    .projects a {
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: #00A3FF;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .projects a:hover {
+      color: #5DB4FF;
+    }
+
+    .projects a::before {
+      content: "→";
+      margin-right: 8px;
+      color: #5DB4FF;
+      transition: margin-right 0.3s ease-in-out;
+    }
+
+    .projects a:hover::before {
+      margin-right: 12px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #A0AEC0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="header">
+      <h1>Vasilii Nikonov</h1>
+      <p>Mathematics & Computer Science Projects</p>
+    </header>
+
+    <section class="section">
+      <h2>Mathematics Projects</h2>
+      <ul class="projects">
+        <li>
+          <a href="https://vnikonov63.github.io/quantum-computation-and-information/">
+            Quantum Computation and Quantum Information
+          </a>
+        </li>
+        <li>
+          <a href="https://vnikonov63.github.io/beginner-linear-algebra"/>
+            The Linear Algebra a Beginning Graduate Student Ought to Know
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Computer Science Projects -->
+    <section class="section">
+      <h2>Computer Science Projects</h2>
+      <ul class="projects">
+        <li><a href="#">Project 1 - Coming Soon</a></li>
+        <li><a href="#">Project 2 - Coming Soon</a></li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; 2025 Vasilii Nikonov. All rights reserved.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
+
