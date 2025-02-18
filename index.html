@@ -1,184 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vasilii Nikonov - Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #121826;
-      color: #E0E6F0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vasilii Nikonov - Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    .container {
-      max-width: 800px;
-      width: 100%;
-      background: #1C2333;
-      border-radius: 10px;
-      padding: 40px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #121826;
+        color: #e0e6f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
 
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+      .container {
+        max-width: 800px;
+        width: 100%;
+        background: #1c2333;
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
 
-    .header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: #F5F7FA;
-    }
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
 
-    .header p {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: #A0AEC0;
-      margin-top: 5px;
-    }
+      .header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #f5f7fa;
+      }
 
-    .section {
-      margin-top: 30px;
-    }
+      .header p {
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #a0aec0;
+        margin-top: 5px;
+      }
 
-    .section h2 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      border-bottom: 2px solid #3D4A61;
-      padding-bottom: 8px;
-      margin-bottom: 20px;
-    }
+      .section {
+        margin-top: 30px;
+      }
 
-    .projects {
-      list-style: none;
-    }
+      .section h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        border-bottom: 2px solid #3d4a61;
+        padding-bottom: 8px;
+        margin-bottom: 20px;
+      }
 
-    .projects li {
-      background: #222B3C;
-      padding: 16px;
-      border-radius: 6px;
-      margin-bottom: 12px;
-      transition: background 0.3s ease-in-out;
-    }
+      .projects {
+        list-style: none;
+      }
 
-    .projects li:hover {
-      background: #2C3B52;
-    }
+      .projects li {
+        background: #222b3c;
+        padding: 16px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+        transition: background 0.3s ease-in-out;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-    .projects a {
-      text-decoration: none;
-      font-size: 1.1rem;
-      color: #00A3FF;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      transition: color 0.3s ease-in-out;
-    }
+      .projects li:hover {
+        background: #2c3b52;
+      }
 
-    .projects a:hover {
-      color: #5DB4FF;
-    }
+      .project-links {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+      }
 
-    .projects a::before {
-      content: "→";
-      margin-right: 8px;
-      color: #5DB4FF;
-      transition: margin-right 0.3s ease-in-out;
-    }
+      .projects a {
+        text-decoration: none;
+        font-size: 1.1rem;
+        color: #00a3ff;
+        font-weight: 500;
+        transition: color 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+      }
 
-    .projects a:hover::before {
-      margin-right: 12px;
-    }
+      .projects a:hover {
+        color: #5db4ff;
+      }
 
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #A0AEC0;
-    }
+      .projects a::before {
+        content: "→";
+        margin-right: 8px;
+        color: #5db4ff;
+        transition: margin-right 0.3s ease-in-out;
+      }
 
-  </style>
-</head>
-<body>
+      .projects a:hover::before {
+        margin-right: 12px;
+      }
 
-  <div class="container">
-    <header class="header">
-      <h1>Vasilii Nikonov</h1>
-    </header>
+      .github-repo {
+        display: inline-flex;
+        align-items: center;
+        margin-left: 12px;
+        color: #ffcc00;
+        transition: transform 0.2s ease-in-out, color 0.3s ease-in-out;
+      }
 
-    <section class="section">
-      <h2>Mathematics Projects</h2>
-      <ul class="projects">
-        <li>
-          <a href="https://vnikonov63.github.io/quantum-computation-and-information/">
-           My solutions to Quantum Computation and Quantum Information by M.A. Nielsen and I.L. Chuang
-          </a>
-        </li>
-        <li>
-          <a href="https://vnikonov63.github.io/beginner-linear-algebra"/>
-            My solutions to The Linear Algebra a Beginning Graduate Student Ought to Know by J.S. Golan
-          </a>
-        </li>
-      </ul>
-    </section>
+      .github-repo::before {
+        content: none !important;
+      }
 
-    <!-- Computer Science Projects -->
-    <section class="section">
-      <h2>Computer Science Projects</h2>
-      <ul class="projects">
-        <li><a href="https://vnikonov63.github.io/diamond-dataset/">Basic Data Analysis</a></li>
-        <li><a href="#">Project 2 - Coming Soon</a></li>
-      </ul>
-    </section>
-   <section class="section">
-      <h2>Completed Courses</h2>
-      <ul class="projects">
-        <li><a href="https://www.dropbox.com/scl/fi/gymbszjoefxy0eungrzup/complete-react-v9.pdf?rlkey=mlhl1fkhf7hx9e7nw3q61tl5k&st=oh7t0440&dl=0">Complete Intro to React v9 by Brian Holt</a></li>
-        <li><a href="#">Complete Intro to React v4 by Brian Holt</a></li>
-        <li><a href="#">Rethinking Asynchronous JavaScript</a></li>
-        <li><a href="#">Intermediate React by Brian Holt</a></li>
-        <li><a href="#">TypeScript 5+ Fundamentals by Mike North</a></li>
-        <li><a href="#">State Management with Redux & MobX</a></li>
-        <li><a href="#">Deep JavaScript Foundations by Kyle Simpson</a></li>
-        <li><a href="#">React and TypeScript by Steve Kinney</a></li>
-        <li><a href="#">Advanced Redux with Redux Toolkit by Steve Kinney</a></li>
-        <li><a href="#">Professional CSS: Build a Website from Scratch by Kevin Powell</a></li>
-        <li><a href="#">Tailwind CSS by Steve Kinney</a></li>
-        <li><a href="#">Rx.js Fundamentals by Steve Kinney</a></li>
-        <li><a href="#">Complete Intro to SQL & PostgreSQL by Brian Halt</a></li>
-        <li><a href="#">Client-Side GraphQL with React by Scott Moss</a></li>
-        <li><a href="#">Introduction to MongoDB by Scott Moss</a></li>
-        <li><a href="#">Introduction to Node.js by Scott Moss</a></li>
-        <li><a href="#">Digging Into Node.js by Kyle Simpson</a></li>
-        <li><a href="#">Full Stack for Front-End Engineers by Jem Young</a></li>
-        <li><a href="#">Fullstack TypeScript (feat. GraphQL & Node.js) by Mike North</a></li>
-        <li><a href="#">AWS For Front-End Engineers by Steve Kinney</a></li>
-        <li><a href="#">Getting a Software Engineering Job by Jerome Hardaway</a></li>
-        <li><a href="#">Everything You'll Need to Know About Git by ThePrimeagen</a></li>
-        <li><a href="#">VIM Fundamentals by ThePrimeagen</a></li>
-      </ul>
-   </section>
+      .github-repo:hover {
+        color: #ffd700;
+        transform: scale(1.1);
+      }
 
-    <footer class="footer">
-      <p>&copy; 2025 Vasilii Nikonov. All rights reserved.</p>
-    </footer>
-  </div>
+      .github-repo svg {
+        width: 18px;
+        height: 18px;
+      }
 
-</body>
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 0.9rem;
+        color: #a0aec0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Vasilii Nikonov</h1>
+      </header>
+
+      <section class="section">
+        <h2>Mathematics Projects</h2>
+        <ul class="projects">
+          <li>
+            <div class="project-links">
+              <a
+                href="https://vnikonov63.github.io/quantum-computation-and-information/"
+              >
+                My solutions to Quantum Computation and Quantum Information
+              </a>
+              <a
+                href="https://github.com/vnikonov63/quantum-computation-and-information"
+                class="github-repo"
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 22v-2a4 4 0 0 0-3.6-3.9c1.9-.2 3.6-.9 3.6-4a3.1 3.1 0 0 0-.9-2.3 3 3 0 0 0-.1-2.4s-.7-.2-2.3.9a7.9 7.9 0 0 0-4.2 0c-1.6-1.1-2.3-.9-2.3-.9a3 3 0 0 0-.1 2.4 3.1 3.1 0 0 0-.9 2.3c0 3.1 1.7 3.8 3.6 4A4 4 0 0 0 8 20v2"
+                  />
+                </svg>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="project-links">
+              <a href="https://vnikonov63.github.io/beginner-linear-algebra">
+                My solutions to The Linear Algebra a Beginning Graduate Student
+                Ought to Know by J.S. Golan
+              </a>
+              <a
+                href="https://github.com/vnikonov63/beginner-linear-algebra"
+                class="github-repo"
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 22v-2a4 4 0 0 0-3.6-3.9c1.9-.2 3.6-.9 3.6-4a3.1 3.1 0 0 0-.9-2.3 3 3 0 0 0-.1-2.4s-.7-.2-2.3.9a7.9 7.9 0 0 0-4.2 0c-1.6-1.1-2.3-.9-2.3-.9a3 3 0 0 0-.1 2.4 3.1 3.1 0 0 0-.9 2.3c0 3.1 1.7 3.8 3.6 4A4 4 0 0 0 8 20v2"
+                  />
+                </svg>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Computer Science Projects -->
+      <section class="section">
+        <h2>Computer Science Projects</h2>
+        <ul class="projects">
+          <li>
+            <a href="https://vnikonov63.github.io/diamond-dataset/"
+              >Basic Data Analysis</a
+            >
+          </li>
+          <li><a href="#">Project 2 - Coming Soon</a></li>
+        </ul>
+      </section>
+      <section class="section">
+        <h2>Completed Courses</h2>
+        <ul class="projects">
+          <li>
+            <div class="project-links">
+              <a
+                href="https://www.dropbox.com/scl/fi/gymbszjoefxy0eungrzup/complete-react-v9.pdf?rlkey=mlhl1fkhf7hx9e7nw3q61tl5k&st=oh7t0440&dl=0"
+              >
+                Complete Intro to React v9 by Brian Holt
+              </a>
+              <a
+                href="https://github.com/vnikonov63/citr-v9-project-fm"
+                class="github-repo"
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 22v-2a4 4 0 0 0-3.6-3.9c1.9-.2 3.6-.9 3.6-4a3.1 3.1 0 0 0-.9-2.3 3 3 0 0 0-.1-2.4s-.7-.2-2.3.9a7.9 7.9 0 0 0-4.2 0c-1.6-1.1-2.3-.9-2.3-.9a3 3 0 0 0-.1 2.4 3.1 3.1 0 0 0-.9 2.3c0 3.1 1.7 3.8 3.6 4A4 4 0 0 0 8 20v2"
+                  />
+                </svg>
+              </a>
+            </div>
+          </li>
+          <li><a href="#">Complete Intro to React v4 by Brian Holt</a></li>
+          <li><a href="#">Rethinking Asynchronous JavaScript</a></li>
+          <li><a href="#">Intermediate React by Brian Holt</a></li>
+          <li><a href="#">TypeScript 5+ Fundamentals by Mike North</a></li>
+          <li><a href="#">State Management with Redux & MobX</a></li>
+          <li><a href="#">Deep JavaScript Foundations by Kyle Simpson</a></li>
+          <li><a href="#">React and TypeScript by Steve Kinney</a></li>
+          <li>
+            <a href="#">Advanced Redux with Redux Toolkit by Steve Kinney</a>
+          </li>
+          <li>
+            <a href="#"
+              >Professional CSS: Build a Website from Scratch by Kevin Powell</a
+            >
+          </li>
+          <li><a href="#">Tailwind CSS by Steve Kinney</a></li>
+          <li><a href="#">Rx.js Fundamentals by Steve Kinney</a></li>
+          <li>
+            <a href="#">Complete Intro to SQL & PostgreSQL by Brian Halt</a>
+          </li>
+          <li><a href="#">Client-Side GraphQL with React by Scott Moss</a></li>
+          <li><a href="#">Introduction to MongoDB by Scott Moss</a></li>
+          <li><a href="#">Introduction to Node.js by Scott Moss</a></li>
+          <li><a href="#">Digging Into Node.js by Kyle Simpson</a></li>
+          <li>
+            <a href="#">Full Stack for Front-End Engineers by Jem Young</a>
+          </li>
+          <li>
+            <a href="#"
+              >Fullstack TypeScript (feat. GraphQL & Node.js) by Mike North</a
+            >
+          </li>
+          <li><a href="#">AWS For Front-End Engineers by Steve Kinney</a></li>
+          <li>
+            <a href="#"
+              >Getting a Software Engineering Job by Jerome Hardaway</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              >Everything You'll Need to Know About Git by ThePrimeagen</a
+            >
+          </li>
+          <li><a href="#">VIM Fundamentals by ThePrimeagen</a></li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        <p>&copy; 2025 Vasilii Nikonov. All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
 </html>
-
