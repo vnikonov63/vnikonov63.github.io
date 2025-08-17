@@ -19,7 +19,6 @@
       display: block;
       background: #fff;
     }
-
     #controls {
       position: fixed;
       top: 12px;
@@ -68,7 +67,7 @@
 
       const pz = svgPanZoom(svg, {
         zoomEnabled: false,
-        panEnabled: false,
+        panEnabled: true,
         controlIconsEnabled: false,
         dblClickZoomEnabled: false,
         fit: true,
@@ -85,12 +84,10 @@
       zoomInBtn.addEventListener("click", (e) => {
         e.preventDefault();
         pz.zoomBy(ZOOM_STEP);
-        pz.center();
       });
       zoomOutBtn.addEventListener("click", (e) => {
         e.preventDefault();
         pz.zoomBy(1 / ZOOM_STEP);
-        pz.center();
       });
     });
   </script>
