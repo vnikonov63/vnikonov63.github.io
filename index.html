@@ -67,29 +67,30 @@
         .forEach((n) => n.setAttribute("vector-effect", "non-scaling-stroke"));
 
       const pz = svgPanZoom(svg, {
-        zoomEnabled: true,
+        zoomEnabled: false,
+        panEnabled: false,
         controlIconsEnabled: false,
+        dblClickZoomEnabled: false,
         fit: true,
         center: true,
         minZoom: 0.5,
         maxZoom: 20,
-        zoomScaleSensitivity: 0.2,
-        dblClickZoomEnabled: true,
       });
       pz.fit();
       pz.center();
 
-      // Button controls
       const zoomInBtn = document.getElementById("zoomIn");
       const zoomOutBtn = document.getElementById("zoomOut");
 
       zoomInBtn.addEventListener("click", (e) => {
         e.preventDefault();
         pz.zoomBy(ZOOM_STEP);
+        pz.center();
       });
       zoomOutBtn.addEventListener("click", (e) => {
         e.preventDefault();
         pz.zoomBy(1 / ZOOM_STEP);
+        pz.center();
       });
     });
   </script>
