@@ -19,12 +19,14 @@
       display: block;
       background: #fff;
     }
+
     #controls {
       position: fixed;
       top: 12px;
       left: 12px;
       z-index: 10;
       display: flex;
+      align-items: center;
       gap: 8px;
       user-select: none;
     }
@@ -41,11 +43,56 @@
     #controls button:active {
       transform: translateY(1px);
     }
+
+    .info {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      font: 600 18px/1 system-ui;
+      cursor: default;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    }
+    .info span {
+      font-weight: 700;
+    }
+    .tip {
+      position: absolute;
+      left: 44px;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 320px;
+      padding: 8px 10px;
+      background: #000;
+      color: #fff;
+      font: 12px/1.3 system-ui;
+      border-radius: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+      white-space: normal;
+    }
+    .info:hover .tip {
+      opacity: 1;
+    }
   </style>
 
   <div id="controls">
     <button id="zoomIn" aria-label="Zoom in">+</button>
     <button id="zoomOut" aria-label="Zoom out">−</button>
+    <button id="reset" aria-label="Reset view">↺</button>
+    <div class="info" aria-hidden="true">
+      <span>?</span>
+      <div class="tip">
+        To zoom into the map, use the +/− buttons. To explore administrative
+        divisions, drag the map with your trackpad to pan.
+      </div>
+    </div>
   </div>
 
   <div id="holder">
@@ -73,21 +120,23 @@
         fit: true,
         center: true,
         minZoom: 0.5,
-        maxZoom: 20,
+        maxZoom: 30,
       });
       pz.fit();
       pz.center();
 
-      const zoomInBtn = document.getElementById("zoomIn");
-      const zoomOutBtn = document.getElementById("zoomOut");
-
-      zoomInBtn.addEventListener("click", (e) => {
+      document.getElementById("zoomIn").addEventListener("click", (e) => {
         e.preventDefault();
         pz.zoomBy(ZOOM_STEP);
       });
-      zoomOutBtn.addEventListener("click", (e) => {
+      document.getElementById("zoomOut").addEventListener("click", (e) => {
         e.preventDefault();
         pz.zoomBy(1 / ZOOM_STEP);
+      });
+      document.getElementById("reset").addEventListener("click", (e) => {
+        e.preventDefault();
+        pz.fit();
+        pz.center();
       });
     });
   </script>
