@@ -1,142 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Where I’ve Been</title>
-    <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        background: #111;
-        color: #eee;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      }
-      .wrap {
-        height: 100%;
-        display: grid;
-        grid-template-rows: auto 1fr;
-      }
-      header {
-        padding: 10px 14px;
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .swatch {
-        width: 14px;
-        height: 14px;
-        border-radius: 3px;
-        border: 1px solid #0006;
-      }
-      #map {
-        height: 100%;
-      }
-      svg {
-        width: 100%;
-        height: 100%;
-        display: block;
-        background: #1c1c1c;
-      }
-      svg path,
-      svg polygon {
-        vector-effect: non-scaling-stroke;
-        stroke: #fff;
-        stroke-width: 0.7;
-      }
-      .home {
-        fill: #d64541;
-      }
-      .visited {
-        fill: #3478c0;
-      }
-      .unvisited {
-        fill: #555;
-      }
-      .hovered {
-        filter: brightness(1.2);
-      }
-      #tip {
-        position: fixed;
-        pointer-events: none;
-        padding: 6px 8px;
-        font-size: 12px;
-        background: #000c;
-        color: #fff;
-        border: 1px solid #fff2;
-        border-radius: 6px;
-        transform: translate(-50%, calc(-100% - 10px));
-        opacity: 0;
-        transition: opacity 0.12s ease;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <header>
-        <div class="badge">
-          <span class="swatch" style="background: #d64541"></span> Home
-        </div>
-        <div class="badge">
-          <span class="swatch" style="background: #3478c0"></span> Visited
-        </div>
-        <div style="margin-left: auto; opacity: 0.7">
-          Scroll = zoom · drag = pan
-        </div>
-      </header>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Map</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background: #fff;
+    }
+    #holder {
+      height: 100%;
+    }
+    object {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #fff;
+    }
+    .non-scaling * {
+      vector-effect: non-scaling-stroke;
+    }
+  </style>
 
-      <div id="map"></div>
-    </div>
+  <div id="holder">
+    <object id="svgobj" type="image/svg+xml" data="map/world.svg"></object>
+  </div>
 
-    <div id="tip"></div>
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  <script>
+    document.getElementById("svgobj").addEventListener("load", function () {
+      const svg =
+        this.contentDocument && this.contentDocument.querySelector("svg");
+      if (!svg) return;
 
-    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
-    <script>
-      window.addEventListener("load", () => {
-        const svg = document.querySelector("#map svg");
-        if (!svg) return;
+      svg
+        .querySelectorAll("*")
+        .forEach((n) => n.setAttribute("vector-effect", "non-scaling-stroke"));
 
-        // Initialize pan/zoom
-        const pz = svgPanZoom(svg, {
-          zoomEnabled: true,
-          controlIconsEnabled: false,
-          fit: true,
-          center: true,
-          minZoom: 0.5,
-          maxZoom: 20,
-          zoomScaleSensitivity: 0.3,
-          dblClickZoomEnabled: true,
-        });
-
-        const tip = document.getElementById("tip");
-        const labelOf = (el) => el.getAttribute("data-name") || el.id || "";
-
-        svg.addEventListener("mousemove", (e) => {
-          const t = e.target;
-          if (t && (t.tagName === "path" || t.tagName === "polygon")) {
-            const name = labelOf(t);
-            if (name) {
-              tip.textContent = name;
-              tip.style.left = e.clientX + "px";
-              tip.style.top = e.clientY + "px";
-              tip.style.opacity = 1;
-              t.classList.add("hovered");
-            }
-          }
-        });
-        svg.addEventListener("mouseout", (e) => {
-          tip.style.opacity = 0;
-          if (e.target && e.target.classList)
-            e.target.classList.remove("hovered");
-        });
+      const pz = svgPanZoom(svg, {
+        zoomEnabled: true,
+        controlIconsEnabled: false,
+        fit: true,
+        center: true,
+        minZoom: 0.2,
+        maxZoom: 200,
+        zoomScaleSensitivity: 0.7,
+        dblClickZoomEnabled: true,
       });
-    </script>
-  </body>
+
+      requestAnimationFrame(() => {
+        const mid = {
+          x: svg.viewBox.baseVal.x + svg.viewBox.baseVal.width / 2,
+          y: svg.viewBox.baseVal.y + svg.viewBox.baseVal.height / 2,
+        };
+        pz.zoomAtPointBy(8, mid);
+        pz.center();
+      });
+    });
+  </script>
 </html>
