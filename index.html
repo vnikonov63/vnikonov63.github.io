@@ -9,6 +9,8 @@
       height: 100%;
       margin: 0;
       background: #fff;
+      overflow: hidden;
+      overscroll-behavior: none;
     }
     #holder {
       height: 100%;
@@ -24,9 +26,8 @@
       position: fixed;
       top: 12px;
       left: 12px;
-      z-index: 10;
+      z-index: 9999;
       display: flex;
-      align-items: center;
       gap: 8px;
       user-select: none;
     }
@@ -43,56 +44,12 @@
     #controls button:active {
       transform: translateY(1px);
     }
-
-    .info {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background: #fff;
-      font: 600 18px/1 system-ui;
-      cursor: default;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-    }
-    .info span {
-      font-weight: 700;
-    }
-    .tip {
-      position: absolute;
-      left: 44px;
-      top: 50%;
-      transform: translateY(-50%);
-      max-width: 320px;
-      padding: 8px 10px;
-      background: #000;
-      color: #fff;
-      font: 12px/1.3 system-ui;
-      border-radius: 8px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.15s ease;
-      white-space: normal;
-    }
-    .info:hover .tip {
-      opacity: 1;
-    }
   </style>
 
   <div id="controls">
     <button id="zoomIn" aria-label="Zoom in">+</button>
     <button id="zoomOut" aria-label="Zoom out">−</button>
     <button id="reset" aria-label="Reset view">↺</button>
-    <div class="info" aria-hidden="true">
-      <span>?</span>
-      <div class="tip">
-        To zoom into the map, use the +/− buttons. To explore administrative
-        divisions, drag the map with your trackpad to pan.
-      </div>
-    </div>
   </div>
 
   <div id="holder">
@@ -108,13 +65,12 @@
         this.contentDocument && this.contentDocument.querySelector("svg");
       if (!svg) return;
 
-      svg
-        .querySelectorAll("*")
-        .forEach((n) => n.setAttribute("vector-effect", "non-scaling-stroke"));
+      // IMPORTANT: let strokes scale with zoom so borders look stronger when zoomed
+      // (we intentionally do NOT set non-scaling-stroke here)
 
       const pz = svgPanZoom(svg, {
-        zoomEnabled: false,
-        panEnabled: true,
+        zoomEnabled: false, // no wheel/pinch/dbl-click zoom
+        panEnabled: true, // click-drag to pan
         controlIconsEnabled: false,
         dblClickZoomEnabled: false,
         fit: true,
@@ -125,18 +81,37 @@
       pz.fit();
       pz.center();
 
-      document.getElementById("zoomIn").addEventListener("click", (e) => {
+      // Buttons
+      const zi = document.getElementById("zoomIn");
+      const zo = document.getElementById("zoomOut");
+      const rs = document.getElementById("reset");
+
+      zi.addEventListener("click", (e) => {
         e.preventDefault();
         pz.zoomBy(ZOOM_STEP);
       });
-      document.getElementById("zoomOut").addEventListener("click", (e) => {
+      zo.addEventListener("click", (e) => {
         e.preventDefault();
         pz.zoomBy(1 / ZOOM_STEP);
       });
-      document.getElementById("reset").addEventListener("click", (e) => {
+      rs.addEventListener("click", (e) => {
         e.preventDefault();
         pz.fit();
         pz.center();
+      });
+
+      // Optional: keyboard shortcuts for desktop (+, -, 0)
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "+") {
+          pz.zoomBy(ZOOM_STEP);
+        }
+        if (e.key === "-") {
+          pz.zoomBy(1 / ZOOM_STEP);
+        }
+        if (e.key === "0") {
+          pz.fit();
+          pz.center();
+        }
       });
     });
   </script>
