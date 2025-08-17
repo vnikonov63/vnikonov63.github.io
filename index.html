@@ -29,7 +29,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
   <script>
     document.getElementById("svgobj").addEventListener("load", function () {
       const svg =
@@ -45,20 +44,14 @@
         controlIconsEnabled: false,
         fit: true,
         center: true,
-        minZoom: 0.2,
-        maxZoom: 200,
-        zoomScaleSensitivity: 0.7,
+        minZoom: 0.5,
+        maxZoom: 20,
+        zoomScaleSensitivity: 0.2,
         dblClickZoomEnabled: true,
       });
 
-      requestAnimationFrame(() => {
-        const mid = {
-          x: svg.viewBox.baseVal.x + svg.viewBox.baseVal.width / 2,
-          y: svg.viewBox.baseVal.y + svg.viewBox.baseVal.height / 2,
-        };
-        pz.zoomAtPointBy(8, mid);
-        pz.center();
-      });
+      pz.fit();
+      pz.center();
     });
   </script>
 </html>
