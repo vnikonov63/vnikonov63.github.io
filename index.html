@@ -19,10 +19,35 @@
       display: block;
       background: #fff;
     }
-    .non-scaling * {
-      vector-effect: non-scaling-stroke;
+
+    #controls {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      user-select: none;
+    }
+    #controls button {
+      width: 40px;
+      height: 40px;
+      font: 600 18px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    }
+    #controls button:active {
+      transform: translateY(1px);
     }
   </style>
+
+  <div id="controls">
+    <button id="zoomIn" aria-label="Zoom in">+</button>
+    <button id="zoomOut" aria-label="Zoom out">−</button>
+  </div>
 
   <div id="holder">
     <object id="svgobj" type="image/svg+xml" data="map/world.svg"></object>
@@ -30,6 +55,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
   <script>
+    const ZOOM_STEP = 1.2;
+
     document.getElementById("svgobj").addEventListener("load", function () {
       const svg =
         this.contentDocument && this.contentDocument.querySelector("svg");
@@ -49,9 +76,21 @@
         zoomScaleSensitivity: 0.2,
         dblClickZoomEnabled: true,
       });
-
       pz.fit();
       pz.center();
+
+      // Button controls
+      const zoomInBtn = document.getElementById("zoomIn");
+      const zoomOutBtn = document.getElementById("zoomOut");
+
+      zoomInBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        pz.zoomBy(ZOOM_STEP);
+      });
+      zoomOutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        pz.zoomBy(1 / ZOOM_STEP);
+      });
     });
   </script>
 </html>
