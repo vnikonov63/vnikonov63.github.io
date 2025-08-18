@@ -65,12 +65,9 @@
         this.contentDocument && this.contentDocument.querySelector("svg");
       if (!svg) return;
 
-      // IMPORTANT: let strokes scale with zoom so borders look stronger when zoomed
-      // (we intentionally do NOT set non-scaling-stroke here)
-
       const pz = svgPanZoom(svg, {
-        zoomEnabled: false, // no wheel/pinch/dbl-click zoom
-        panEnabled: true, // click-drag to pan
+        zoomEnabled: false,
+        panEnabled: true,
         controlIconsEnabled: false,
         dblClickZoomEnabled: false,
         fit: true,
@@ -100,7 +97,6 @@
         pz.center();
       });
 
-      // Optional: keyboard shortcuts for desktop (+, -, 0)
       window.addEventListener("keydown", (e) => {
         if (e.key === "+") {
           pz.zoomBy(ZOOM_STEP);
